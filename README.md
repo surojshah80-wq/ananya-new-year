@@ -1,2 +1,215 @@
 # ananya-new-year
 Happy New Year Ananya 💖
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ananya 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive;
+  background: linear-gradient(135deg, #ffd1dc, #ffe6f0);
+  color: #ff2f6d;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 25px;
+  padding: 20px;
+  animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.hidden { display: none; }
+
+.img-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.img-row img {
+  width: 45%;
+  border-radius: 15px;
+}
+
+button {
+  background: linear-gradient(135deg, #ff4d88, #ff85a2);
+  border: none;
+  padding: 12px 18px;
+  border-radius: 25px;
+  font-size: 1em;
+  color: white;
+  cursor: pointer;
+  margin: 8px;
+}
+
+.gifts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.gift {
+  font-size: 3em;
+  cursor: pointer;
+}
+
+.slide img {
+  width: 45%;
+  border-radius: 15px;
+  margin: 5px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- START -->
+<div id="start" class="card">
+  <h1>🎆 Happy New Year Ananya 💕</h1>
+  <p>I made this just for you 🥺</p>
+  <button onclick="go(1)">Start 💖</button>
+</div>
+
+<!-- QUESTIONS -->
+<div id="q1" class="card hidden">
+  <h2>Do you love me? 🥺</h2>
+  <div class="img-row">
+    <img src="https://i.imgur.com/8QZ7Z5L.jpg">
+    <img src="https://i.imgur.com/9bK0RzN.jpg">
+  </div>
+  <button onclick="wrong()">No 😒</button>
+  <button onclick="go(2)">YESSS 🥰</button>
+</div>
+
+<div id="q2" class="card hidden">
+  <h2>Am I cute or VERY cute? 😏</h2>
+  <div class="img-row">
+    <img src="https://i.imgur.com/7kJZQyM.jpg">
+    <img src="https://i.imgur.com/YZ6ZQ5R.jpg">
+  </div>
+  <button onclick="go(3)">Cute 💕</button>
+  <button onclick="go(3)">VERY 😤</button>
+</div>
+
+<div id="q3" class="card hidden">
+  <h2>Will you stay with me forever? 🫶</h2>
+  <div class="img-row">
+    <img src="https://i.imgur.com/5tj6S7O.jpg">
+    <img src="https://i.imgur.com/2WZtOD6.jpg">
+  </div>
+  <button onclick="wrong()">Idk 🤨</button>
+  <button onclick="go(4)">Obviously ❤️</button>
+</div>
+
+<div id="q4" class="card hidden">
+  <h2>Who loves more? 😌</h2>
+  <div class="img-row">
+    <img src="https://i.imgur.com/z0rYzJm.jpg">
+    <img src="https://i.imgur.com/1t5Zz4O.jpg">
+  </div>
+  <button onclick="go(5)">You 😏</button>
+  <button onclick="go(5)">Me 😌</button>
+</div>
+
+<div id="q5" class="card hidden">
+  <h2>Ready for your gifts? 🎁</h2>
+  <button onclick="goGifts()">YESSS 🥹</button>
+</div>
+
+<!-- WRONG -->
+<div id="wrong" class="card hidden">
+  <h2>😾 HOW DARE YOU</h2>
+  <img src="https://i.imgur.com/8QZ7Z5L.jpg" width="70%">
+  <br><br>
+  <button onclick="retry()">SORRY 😭</button>
+</div>
+
+<!-- GIFTS -->
+<div id="gifts" class="card hidden">
+  <h2>Open slowly 💖</h2>
+  <div class="gifts">
+    <div class="gift" onclick="openSlide(1)">🎁</div>
+    <div class="gift" onclick="openSlide(2)">🎁</div>
+    <div class="gift" onclick="openSlide(3)">🎁</div>
+    <div class="gift" onclick="openSlide(4)">🎁</div>
+    <div class="gift" onclick="openSlide(5)">🎁</div>
+  </div>
+</div>
+
+<!-- SLIDES -->
+<div id="slide" class="card hidden">
+  <div class="slide">
+    <!-- REPLACE IMAGES BELOW -->
+    <img id="img1">
+    <img id="img2">
+  </div>
+  <p id="text"></p>
+  <button onclick="back()">Back 🎁</button>
+</div>
+
+</div>
+
+<script>
+let current = 1;
+
+const slides = {
+  1: {img1:"", img2:"", text:"WRITE YOUR PARAGRAPH HERE 💖"},
+  2: {img1:"", img2:"", text:"WRITE YOUR PARAGRAPH HERE 💖"},
+  3: {img1:"", img2:"", text:"WRITE YOUR PARAGRAPH HERE 💖"},
+  4: {img1:"", img2:"", text:"WRITE YOUR PARAGRAPH HERE 💖"},
+  5: {img1:"", img2:"", text:"WRITE YOUR PARAGRAPH HERE 💖"},
+};
+
+function go(n){
+  document.getElementById("q"+current)?.classList.add("hidden");
+  document.getElementById("q"+n).classList.remove("hidden");
+  current = n;
+}
+
+function wrong(){
+  document.getElementById("q"+current).classList.add("hidden");
+  document.getElementById("wrong").classList.remove("hidden");
+}
+
+function retry(){
+  document.getElementById("wrong").classList.add("hidden");
+  document.getElementById("q"+current).classList.remove("hidden");
+}
+
+function goGifts(){
+  document.getElementById("q5").classList.add("hidden");
+  document.getElementById("gifts").classList.remove("hidden");
+}
+
+function openSlide(n){
+  document.getElementById("gifts").classList.add("hidden");
+  document.getElementById("slide").classList.remove("hidden");
+  document.getElementById("img1").src = slides[n].img1;
+  document.getElementById("img2").src = slides[n].img2;
+  document.getElementById("text").innerText = slides[n].text;
+}
+
+function back(){
+  document.getElementById("slide").classList.add("hidden");
+  document.getElementById("gifts").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
